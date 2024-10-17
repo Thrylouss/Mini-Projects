@@ -1,0 +1,29 @@
+{% extends 'DataBaseApp/layouts/base.html' %}
+{% load static %}
+
+{% block title %}
+	Anita
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        {% include 'DataBaseApp/includes/header.html' %}
+
+    <div class="products-container">
+        {% for product in products %}
+
+                    <div class="product">
+                        <img class="product-img" src="{{ product.image }}" alt="">
+                        <p class="product-name">{{ product.name }}</p>
+                        <p class="product-price">{{ product.price }}</p>
+                        <a href="{% url 'delete-product' product_id=product.id %}" class="order">Delete</a>
+                    </div>
+        {% endfor %}
+    </div>
+        {% if products %}
+        	<a href="{% url 'order-page' %}" class="order">ORDER</a>
+        {% endif %}
+
+    </div>
+{% endblock %}
+

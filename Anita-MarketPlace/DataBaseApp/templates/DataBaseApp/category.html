@@ -1,0 +1,25 @@
+{% extends 'DataBaseApp/layouts/base.html' %}
+{% load static %}
+
+{% block title %}
+	Anita
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        {% include 'DataBaseApp/includes/header.html' %}
+
+    <div class="products-container">
+        {% for product in products %}
+
+                    <div class="product">
+                        <img class="product-img" src="{{ product.image.url }}" alt="">
+                        <p class="product-name">{{ product.name }}</p>
+                        <p class="product-price">{{ product.price }}</p>
+                        <a href="{% url 'add-product-to-session' product_id=product.id %}">Buy</a>
+                    </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
+

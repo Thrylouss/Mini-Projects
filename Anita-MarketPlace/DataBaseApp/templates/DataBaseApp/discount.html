@@ -1,0 +1,39 @@
+{% extends 'DataBaseApp/layouts/base.html' %}
+{% load static %}
+
+{% block title %}
+	Anita
+{% endblock %}
+
+{% block style-back %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        {% include 'DataBaseApp/includes/header.html' %}
+        <div class="carousel">
+            <button class="button-slide" id="prevBtn">&#9664;</button>
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        {% for product in products %}
+                            <li class="carousel-slide">
+                                <div class="info-main">
+                                    <p class="carousel-name">{{ product.name }}</p>
+                                    <div class="info-main-extra">
+                                        <p class="carousel-price">{{ product.price }}</p>
+                                        <a href="{% url 'add-product-to-session' product_id=product.id %}" class="carousel-buy"><img class="carousel-buy-img" src="{% static 'img/Cart.png' %}" alt=""></a>
+                                    </div>
+                                </div>
+                                <img class="carousel-img" src="{{ product.image.url }}" alt="">
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            <button class="button-slide" id="nextBtn">&#9654;</button>
+        </div>
+
+        {% include 'DataBaseApp/includes/main.html' %}
+    </div>
+{% endblock %}
+
